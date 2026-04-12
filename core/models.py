@@ -35,24 +35,31 @@ POSICIONES = [
 
 class Equipo(models.Model):
     nombre = models.CharField(max_length=100)
-    created = models.DateTimeField(auto_now_add=True)
-    updated = models.DateTimeField(auto_now=True)
+
+    created = models.DateTimeField(auto_now_add=True, verbose_name="Fecha de creación")
+    updated = models.DateTimeField(auto_now=True, verbose_name="Fecha de actualización")
 
     def __str__(self):
         return self.nombre
     
     class Meta:
-        ordering = ['nombre']
+        verbose_name = "Equipo"
+        verbose_name_plural = "Equipos"
+        ordering = ['-created']
 
 class Jugador(models.Model):
     nombre = models.CharField(max_length=100)
     posicion = models.CharField(max_length=3, choices=POSICIONES)
     equipo = models.ForeignKey(Equipo, on_delete=models.CASCADE, related_name='jugadores')
-    created = models.DateTimeField(auto_now_add=True)
-    updated = models.DateTimeField(auto_now=True)
+
+    created = models.DateTimeField(auto_now_add=True, verbose_name="Fecha de creación")
+    updated = models.DateTimeField(auto_now=True, verbose_name="Fecha de actualización")
 
     def __str__(self):
-        return self.nombre
+        # return self.nombre + " - " + self.get_posicion_display() + " (" + self.equipo.nombre + ")"
+        return f"{self.nombre} - {self.equipo}"
      
     class Meta:
-        ordering = ['nombre']
+        verbose_name = "Jugador"
+        verbose_name_plural = "Jugadores"
+        ordering = ['-created']

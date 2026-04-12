@@ -10,7 +10,17 @@ class DepartamentoAdmin(admin.ModelAdmin):
 class EmpleadoAdmin(admin.ModelAdmin):
     list_display = ('nombre', 'departamento')
 
+class EquipoAdmin(admin.ModelAdmin):
+    readonly_fields = ('created', 'updated')
+    
+
+class JugadorAdmin(admin.ModelAdmin):
+    readonly_fields = ('created', 'updated')
+    # list_display = ('nombre', 'posicion', 'equipo')
+    # list_filter = ('equipo',)
+    # search_fields = ('nombre',)
+
 admin.site.register(Departamento, DepartamentoAdmin)
 admin.site.register(Empleado, EmpleadoAdmin)
-admin.site.register(Equipo)
-admin.site.register(Jugador)
+admin.site.register(Equipo, EquipoAdmin)
+admin.site.register(Jugador, JugadorAdmin)

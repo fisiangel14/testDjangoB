@@ -4,4 +4,24 @@
 
 {% block content %}
     <h1>Bienvenido a la página del equipo</h1>
+    {% comment %} <h2>Lista de Equipos</h2>
+        <ul>
+            {% for equipo in equipos %}
+                <li>{{ equipo.nombre }}</li>
+            {% endfor %}
+        </ul>
+        <p>Total equipos: {{ equipos|length }}</p> {% endcomment %}
+    <ul>
+        {% for equipo in equipos %}
+            <li>
+            <a href="{% url 'core:jugadores_por_equipo' equipo.id %}">
+                {{ equipo.nombre }}
+            </a>
+            </li>
+        {% empty %}
+            <li>No hay equipos registrados.</li>
+        {% endfor %}
+    </ul>
+
+
 {% endblock %}

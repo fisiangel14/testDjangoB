@@ -3,5 +3,17 @@
 {% block title %}Jugadores{% endblock %}
 
 {% block content %}
-    <h1>Bienvenido a la página de jugadores</h1>
+
+    <h1>Jugadores de {{ equipo.nombre }}</h1>
+
+    <p>Total jugadores: {{ jugadores|length }}</p>
+
+    <ul>
+        {% for jugador in jugadores %}
+            <li>{{ jugador.nombre }}</li>
+        {% empty %}
+            <li>No hay jugadores registrados para este equipo.</li>
+        {% endfor %}
+    </ul>
 {% endblock %}
+

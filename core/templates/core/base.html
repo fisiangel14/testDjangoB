@@ -1,0 +1,10 @@
+
+<h1>{% block title %}{% endblock %}</h1>
+
+<ul>
+    <li><a href="{% url 'core:index' %}">Inicio</a></li>
+    <li><a href="{% url 'core:equipo' %}">Equipo</a></li>
+    <li><a href="{% url 'core:jugadores' %}">Jugadores</a></li>
+</ul>
+
+{% block content %}{% endblock %}

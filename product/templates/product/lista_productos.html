@@ -1,0 +1,11 @@
+<h1>Lista de Laptops</h1>
+<ul>
+    {% for producto in productos %}
+        <li>
+            <a href="{% url 'product:detalle_producto' producto.id %}">
+                {{ producto.nombre }} - S/ {{ producto.precio }} - {{ producto.categoria.nombre }}
+            </a>
+        </li>
+    {% endfor %}
+</ul>
+

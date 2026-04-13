@@ -1,0 +1,7 @@
+<h1>Detalle del producto</h1>
+
+<p>Nombre: {{ producto.nombre }}</p>
+<p>Precio: {{ producto.precio }}</p>
+<p>Categoría: {{ producto.categoria.nombre }}</p>
+
+<a href="{% url 'product:productos_laptops' %}">Volver a la lista completa de productos</a>

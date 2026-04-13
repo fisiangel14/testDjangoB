@@ -16,3 +16,8 @@ def detalle_producto(request, id):
     # producto = Producto.objects.get(id=id)
     producto = get_object_or_404(Producto, id=id)
     return render(request, 'product/detalle_producto.html', {'producto': producto})
+
+def productos_por_categoria(request, id):
+    #select * from producto where categoria.id = id
+    productos = Producto.objects.filter(categoria__id=id)
+    return render(request, 'product/lista_de_productos.html', {'productos': productos})

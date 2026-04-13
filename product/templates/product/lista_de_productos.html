@@ -3,7 +3,11 @@
 <ul>
     {% for producto in productos %}
         <li>
-            {{ producto.nombre }} - S/ {{ producto.precio }} - {{ producto.categoria.nombre }}
+            {{ producto.nombre }} - <a href="{% url 'product:productos_por_categoria' producto.categoria.id %}">{{ producto.categoria.nombre }}</a>
         </li>
     {% endfor %}
 </ul>
+
+{% if  request.resolver_match.url_name == 'productos_por_categoria' %}
+    <a href="{% url 'product:lista_de_productos' %}">Volver a la lista completa de productos x</a>
+{% endif %}

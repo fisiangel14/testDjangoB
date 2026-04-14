@@ -20,4 +20,5 @@ def detalle_producto(request, id):
 def productos_por_categoria(request, id):
     #select * from producto where categoria.id = id
     productos = Producto.objects.filter(categoria__id=id)
-    return render(request, 'product/lista_de_productos.html', {'productos': productos})
+    categoria = Categoria.objects.get(id=id)
+    return render(request, 'product/lista_de_productos.html', {'productos': productos, 'categoria': categoria})

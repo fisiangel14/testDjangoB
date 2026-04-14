@@ -1,13 +1,13 @@
-<h1>Lista de Productos</h1>
+<h1>Lista de {% if categoria %}{{ categoria.nombre }}{% else %}Productos{% endif %}</h1>
 
 <ul>
     {% for producto in productos %}
         <li>
-            {{ producto.nombre }} - <a href="{% url 'product:productos_por_categoria' producto.categoria.id %}">{{ producto.categoria.nombre }}</a>
+            {{ producto.nombre }} --- <a href="{% url 'product:productos_por_categoria' producto.categoria.id %}">{{ producto.categoria.nombre }}</a>
         </li>
     {% endfor %}
 </ul>
 
 {% if  request.resolver_match.url_name == 'productos_por_categoria' %}
-    <a href="{% url 'product:lista_de_productos' %}">Volver a la lista completa de productos x</a>
+    <a href="{% url 'product:lista_de_productos' %}">Volver a la lista completa de productos</a>
 {% endif %}

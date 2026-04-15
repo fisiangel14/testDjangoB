@@ -11,3 +11,5 @@
 {% if  request.resolver_match.url_name == 'productos_por_categoria' %}
     <a href="{% url 'product:lista_de_productos' %}">Volver a la lista completa de productos</a>
 {% endif %}
+
+<a href="{% url 'product:crear_producto' %}">Crear Nuevo Producto</a>

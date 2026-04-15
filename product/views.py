@@ -14,7 +14,7 @@ def productos_laptops(request):
 def detalle_producto(request, id):
     #select * from producto where id = id
     # producto = Producto.objects.get(id=id)
-    producto = get_object_or_404(Producto, id=id)
+    producto = get_object_or_404(Producto, id=id) # Si no encuentra el producto, devuelve un error 404
     return render(request, 'product/detalle_producto.html', {'producto': producto})
 
 def productos_por_categoria(request, id):
@@ -26,7 +26,15 @@ def productos_por_categoria(request, id):
 # Formularios - Enviar algo
 def crear_producto(request):
     if request.method == 'POST':
-        return ;
+        nombre = request.POST.get('nombre')
+        precio = request.POST.get('precio')
+        categoria_id = request.POST.get('categoria')
+        categoria =  Categoria.objects.get(id=categoria_id)
+        producto = Producto(nombre=nombre, precio=precio, categoria=categoria)
+        producto.save()
+        print(producto)
+        # producto.save()
+        return redirect('product:lista_de_productos')
     else:
         categorias = Categoria.objects.all()
         return render(request, 'product/crear_producto.html', {'categorias': categorias})

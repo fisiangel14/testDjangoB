@@ -1,6 +1,6 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from .models import Producto, Categoria
-# Create your views here.
+# Create your views here. Ver algo
 def lista_de_productos(request):
     #select * from producto
     productos = Producto.objects.all()
@@ -22,3 +22,11 @@ def productos_por_categoria(request, id):
     productos = Producto.objects.filter(categoria__id=id)
     categoria = Categoria.objects.get(id=id)
     return render(request, 'product/lista_de_productos.html', {'productos': productos, 'categoria': categoria})
+
+# Formularios - Enviar algo
+def crear_producto(request):
+    if request.method == 'POST':
+        return ;
+    else:
+        categorias = Categoria.objects.all()
+        return render(request, 'product/crear_producto.html', {'categorias': categorias})

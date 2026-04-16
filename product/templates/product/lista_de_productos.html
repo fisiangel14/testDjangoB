@@ -5,6 +5,7 @@
         <li>
             {{ producto.nombre }} --- <a href="{% url 'product:productos_por_categoria' producto.categoria.id %}">{{ producto.categoria.nombre }}</a>
         </li>
+        <a href="{% url 'product:editar_producto' producto.id %}">Editar
     {% endfor %}
 </ul>
 

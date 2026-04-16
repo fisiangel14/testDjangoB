@@ -47,3 +47,24 @@ def crear_categoria(request):
         return redirect('product:lista_de_productos')
     else:
         return render(request, 'product/crear_categoria.html')
+    
+def editar_producto(request, id):
+    producto = get_object_or_404(Producto, id=id)
+    if request.method == 'POST':
+        producto.nombre = request.POST.get('nombre')
+        producto.precio = request.POST.get('precio')
+        categoria_id = request.POST.get('categoria')
+        producto.categoria = Categoria.objects.get(id=categoria_id)
+        producto.save()
+        return redirect('product:detalle_producto', id=producto.id)
+    else:
+        categorias = Categoria.objects.all()
+        return render(request, 'product/editar_producto.html', {'producto': producto, 'categorias': categorias})
+    
+def eliminar_producto(request, id):
+    producto = get_object_or_404(Producto, id=id)
+    if request.method == 'POST':
+        producto.delete()
+        return redirect('product:lista_de_productos')
+    else:
+        return render(request, 'product/eliminar_producto.html', {'producto': producto})

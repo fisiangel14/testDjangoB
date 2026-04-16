@@ -38,3 +38,12 @@ def crear_producto(request):
     else:
         categorias = Categoria.objects.all()
         return render(request, 'product/crear_producto.html', {'categorias': categorias})
+    
+def crear_categoria(request):
+    if request.method == 'POST':
+        nombre = request.POST.get('nombre')
+        categoria = Categoria(nombre=nombre)
+        categoria.save()
+        return redirect('product:lista_de_productos')
+    else:
+        return render(request, 'product/crear_categoria.html')

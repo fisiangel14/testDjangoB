@@ -59,6 +59,7 @@ def editar_producto(request, id):
         return redirect('product:detalle_producto', id=producto.id)
     else:
         categorias = Categoria.objects.all()
+        print(producto.precio)
         return render(request, 'product/editar_producto.html', {'producto': producto, 'categorias': categorias})
     
 def eliminar_producto(request, id):
